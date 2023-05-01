@@ -9,7 +9,28 @@
     <title>Document</title>
 </head>
 <body>
-<header>Привет</header>
+<header>
+    <div class="d-flex">
+        <!-- Если авторизованы -->
+        <a th:if="${isAuth}" th:href="@{/cart}" class="btn btn-outline-dark me-2" type="submit">
+            <i class="bi-cart-fill me-1"></i>
+            Корзина
+            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+        </a>
+
+        <!-- Баланс -->
+        <a th:if="${isAuth}" th:href="@{/profile}" class="btn btn-outline-dark me-2">Профиль</a>
+
+        <!--                <form class="h" th:if="${isAuth}" th:method="POST" th:action="@{/logout}">-->
+        <!--                    <input type="submit" class="btn btn-outline-dark me-2 ui-helper-clearfix" value="Выйти"/>-->
+        <!--                </form>-->
+
+        <!-- Если не авторизованы -->
+        <a th:if="${!isAuth}" href="/auth/login" class="btn btn-outline-dark me-2" type="submit">Войти</a>
+        <a th:if="${!isAuth}" href="/auth/register" class="btn btn-outline-dark me-2"
+           type="submit">Регистрация</a>
+    </div>
+</header>
 
 <div layout:fragment="content">
 

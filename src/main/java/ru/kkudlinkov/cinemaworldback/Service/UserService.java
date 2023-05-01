@@ -3,7 +3,9 @@ package ru.kkudlinkov.cinemaworldback.Service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.kkudlinkov.cinemaworldback.Domain.dto.UserRegisterDTO;
 import ru.kkudlinkov.cinemaworldback.Domain.model.User;
+import ru.kkudlinkov.cinemaworldback.Mapper.UserMapper;
 import ru.kkudlinkov.cinemaworldback.Repository.UserRepository;
 
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-//  private final UserMapper userMapper;
+    private final UserMapper userMapper;
 
     public void save(User user) {
         userRepository.save(user);
@@ -45,5 +47,15 @@ public class UserService {
      */
     public User getById(int id) {
         return findById(id).orElseThrow();
+    }
+
+
+
+    /**
+     * Регистрация пользователя
+     * @param userRegisterDTO
+     */
+    public void register(UserRegisterDTO userRegisterDTO) {
+        save(userMapper.registerDTOToUser(userRegisterDTO));
     }
 }

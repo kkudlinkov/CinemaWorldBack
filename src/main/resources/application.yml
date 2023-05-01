@@ -12,6 +12,6 @@ spring:
       hibernate:
         format_sql: true
     generate-ddl: false
-  liquibase:
+  liquibase:  #Нужна для контроля Базы данных
     change-log: classpath:db/changelog/db.changelog-master.xml
     enabled: true

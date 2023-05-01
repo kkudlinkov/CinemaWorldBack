@@ -1,5 +1,7 @@
 package ru.kkudlinkov.cinemaworldback.Domain.model;
 
+// Сущность БД
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,9 +24,6 @@ public class User {
 
     @Column(name = "username")
     private String username;
-
-    @Column(name = "email",nullable = false, unique = true)
-    private String email;
 
     @Column(name = "password", nullable = false)
     private String password;

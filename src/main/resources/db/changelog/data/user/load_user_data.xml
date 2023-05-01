@@ -15,10 +15,9 @@
                 separator=","
                 tableName="users"
                 usePreparedStatements="true">
-            <column name="id" type="numeric"/>
-            <column name="name" type="string"/>
+<!--            <column name="id" type="numeric"/>-->
+            <column name="username" type="string"/>
             <column name="password" type="string"/>
-            <column name="email" type="string"/>
             <column name="role" type="string"/>
         </loadData>
     </changeSet>

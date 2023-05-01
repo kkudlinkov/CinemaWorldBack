@@ -1,5 +1,6 @@
 package ru.kkudlinkov.cinemaworldback.Domain.model;
 
+//Сущность БД
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
