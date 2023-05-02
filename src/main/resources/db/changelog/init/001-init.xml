@@ -5,15 +5,15 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet id="create-films-table" author="admin">
         <createTable tableName="films">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_id"/>
             </column>
             <column name="name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="description" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(1000)"/>
             <column name="actor" type="VARCHAR(255)"/>
-            <column name="image" type="VARCHAR(255)"/>
+            <column name="image" type="VARCHAR(1000)"/>
         </createTable>
     </changeSet>
 
@@ -21,7 +21,7 @@
     <changeSet author="author" id="create_table_users">
         <createTable tableName="users">
             <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints  nullable="false"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="film_id"/>
             </column>
             <column name="username" type="varchar(255)"/>
             <column name="password" type="varchar(255)">
@@ -32,4 +32,21 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="create_users_films" author="admin">
+        <createTable tableName="users_films">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="film_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <!--        <addPrimaryKey-->
+        <!--                tableName="users_products"-->
+        <!--                columnNames="user_id, product_id"-->
+        <!--                constraintName="users_products_pk"-->
+        <!--        />-->
+    </changeSet>
+
 </databaseChangeLog>

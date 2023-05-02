@@ -8,7 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "films")
@@ -44,7 +46,11 @@ public class Film {
     @Column(name = "image")
     private String image;
 
-    // OneToMany
-    //    @Column(name = "genre")
-    //    private String genre;
+    @ManyToMany
+    @JoinTable(
+            name = "users_films",
+            joinColumns = @JoinColumn(name = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> users = new HashSet<>();
 }

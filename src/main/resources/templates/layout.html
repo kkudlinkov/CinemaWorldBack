@@ -6,34 +6,56 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
     <title>Document</title>
 </head>
 <body>
-<header>
-    <div class="d-flex">
-        <!-- Если авторизованы -->
-        <a th:if="${isAuth}" th:href="@{/cart}" class="btn btn-outline-dark me-2" type="submit">
-            <i class="bi-cart-fill me-1"></i>
-            Корзина
-            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-        </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#!">CinemaWorld</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">All Products</a></li>
+                        <li>
+                            <hr class="dropdown-divider"/>
+                        </li>
+                        <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                        <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex m-0">
+                <a th:if="${isAuth}" th:href="@{/favourites}" class="btn btn-outline-dark me-2" type="submit">
+                    <i class="bi-heart-fill me-1"></i>
+                    Избранное
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                </a>
+                <a th:if="${isAuth}" th:href="@{/profile}" class="btn btn-outline-dark me-2">Профиль</a>
+                <a th:if="${!isAuth}" href="/auth/login" class="btn btn-outline-dark me-2" type="submit">Войти</a>
+                <a th:if="${!isAuth}" href="/auth/register" class="btn btn-outline-dark me-2"
+                   type="submit">Регистрация</a>
 
-        <!-- Баланс -->
-        <a th:if="${isAuth}" th:href="@{/profile}" class="btn btn-outline-dark me-2">Профиль</a>
-
-        <!--                <form class="h" th:if="${isAuth}" th:method="POST" th:action="@{/logout}">-->
-        <!--                    <input type="submit" class="btn btn-outline-dark me-2 ui-helper-clearfix" value="Выйти"/>-->
-        <!--                </form>-->
-
-        <!-- Если не авторизованы -->
-        <a th:if="${!isAuth}" href="/auth/login" class="btn btn-outline-dark me-2" type="submit">Войти</a>
-        <a th:if="${!isAuth}" href="/auth/register" class="btn btn-outline-dark me-2"
-           type="submit">Регистрация</a>
+            </form>
+        </div>
     </div>
-</header>
+</nav>
+
 
 <div layout:fragment="content">
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

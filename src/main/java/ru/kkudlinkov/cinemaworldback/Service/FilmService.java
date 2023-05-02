@@ -8,6 +8,7 @@ import ru.kkudlinkov.cinemaworldback.Repository.FilmRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -40,4 +41,15 @@ public class FilmService {
     public Film getById(int id) {
         return findById(id).orElseThrow();
     }
+
+    /**
+     * Получение списка избранных фильмов
+     *
+     * @return
+     */
+    public static double getFavouritesTotal(Set<Film> films) {
+        // Возврат списка избранных фильмов
+        return 0;
+    }
+
 }

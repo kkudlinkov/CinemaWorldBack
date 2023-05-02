@@ -1,4 +1,3 @@
-username,password,role
-John,john123,user
-Jane,jane123,admin
-Bob,bob123,user
+username;password;role
+s@s.s;$2a$10$aAbCg1baXzoufiKpspmaJulrPeM4l1PE4GDVnsg5n6Y0zH/Xf9Dwm;ROLE_ADMIN
+u@u.u;$2a$10$s9F7bPTLcZQvnITcyhAR9uSZyufXos.COXq0jpkJu1NSAkIT/LTnu;ROLE_USER

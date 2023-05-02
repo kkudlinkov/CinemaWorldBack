@@ -12,7 +12,7 @@
                 file="users.csv"
                 quotchar="'"
                 relativeToChangelogFile="true"
-                separator=","
+                separator=";"
                 tableName="users"
                 usePreparedStatements="true">
 <!--            <column name="id" type="numeric"/>-->
