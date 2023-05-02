@@ -2,10 +2,7 @@ package ru.kkudlinkov.cinemaworldback.Controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import ru.kkudlinkov.cinemaworldback.Service.AuthService;
 import ru.kkudlinkov.cinemaworldback.Service.FilmService;
@@ -15,34 +12,46 @@ import ru.kkudlinkov.cinemaworldback.Service.UserService;
 @AllArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-private final FilmService filmService;
+    private final FilmService filmService;
     private final AuthService authService;
     private final UserService userService;
 
-    @PostMapping("/add-to-favorite/{id}")
-    public String addToFavorite(@PathVariable Integer id, Model model) {
-        model.addAttribute("userInfo", authService.getUserInfo());
-
-        if (userService.addToCartByProductId(id)) {
-            return "redirect:/films/" + id + "?success";
-        } else {
-            return "redirect:/films/" + id + "?error";
-        }
-    }
-
     /**
-     * Удаление из избранного
+     * Страница профиля пользователя
      *
      * @return
      */
-    @PostMapping("/remove-from-cart/{id}")
-    public String removeFromCart(Model model, @PathVariable int id) {
+    @GetMapping("/profile")
+    public String profile(Model model) {
+        // Провряем, авторизован ли пользователь добавляя переменную isAuth
         model.addAttribute("userInfo", authService.getUserInfo());
 
-        if (userService.removeFromCartByProductId(id)) {
-            return "redirect:/user/profile?success";
-        } else {
-            return "redirect:/user/profile?error";
-        }
+        // Если пользователь авторизован, то добавляем его в модель
+        var user = authService.getAuthUser().orElse(null);
+
+        var favourite = user.getFilms();
+        model.addAttribute("favourite", favourite);
+        model.addAttribute("favouriteTotal", FilmService.getFavouritesTotal(favourite));
+
+        return "profile";
+    }
+
+
+    @PostMapping("/add-to-favourite/{id}")
+    public String addToFavorite(Model model, @PathVariable int id) {
+        model.addAttribute("userInfo", authService.getUserInfo());
+        userService.addToFavouriteById(id);
+        return "redirect:/";
+
+    }
+
+    /*
+     * Удаление товара из избранного по id товара
+     */
+    @PostMapping("/delete-from-favourite/{id}")
+    public String deleteFromFavourite(Model model, @PathVariable int id) {
+        model.addAttribute("userInfo", authService.getUserInfo());
+        userService.deleteFromFavouriteById(id);
+        return "redirect:/user/profile";
     }
 }

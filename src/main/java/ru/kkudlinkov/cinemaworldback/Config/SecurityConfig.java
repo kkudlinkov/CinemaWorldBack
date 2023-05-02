@@ -22,7 +22,7 @@ public class SecurityConfig {
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/home", "/films/**", "/style/**", "/").permitAll() //permitAll кто угодно
                 .requestMatchers("/auth/login", "/auth/register").permitAll()// authenticated что доступно уинтифицированным
-                .anyRequest().authenticated()
+                .requestMatchers("/user/**", "/order/**").authenticated()
                 .and()
                 .formLogin().loginPage("/auth/login") // Есть страница авторизация login => это URL страницы для авторизации
                 .loginProcessingUrl("/process_login") // Постформа сюда адресуется

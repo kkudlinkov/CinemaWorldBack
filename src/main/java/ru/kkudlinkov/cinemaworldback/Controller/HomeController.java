@@ -18,9 +18,8 @@ public class HomeController {
     public String home(Model model) {
         model.addAttribute("films", filmService.getAllFilms());
 
-        // Провряем, авторизован ли пользователь добавляя переменную isAuth
-        model.addAttribute("isAuth", authService.getAuthUser().isPresent());
-
+        // Провряем, авторизован ли пользователь добавляя переменную
+        model.addAttribute("userInfo", authService.getUserInfo());
 
         // Если пользователь авторизован, то добавляем его в модель
         authService.getAuthUser().ifPresent(user -> model.addAttribute("user", user));

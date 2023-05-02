@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -36,11 +37,11 @@ public class User {
     /**
      * Избранное пользователя
       */
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_films",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "films_id")
+            inverseJoinColumns = @JoinColumn(name = "film_id")
     )
     private Set<Film> films = new HashSet<>();
 }

@@ -49,7 +49,11 @@ public class FilmService {
      */
     public static double getFavouritesTotal(Set<Film> films) {
         // Возврат списка избранных фильмов
-        return 0;
+        var total = 0;
+        for (Film film : films) {
+            total += film.getId();
+        }
+        return total;
     }
 
 }

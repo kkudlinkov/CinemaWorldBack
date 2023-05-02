@@ -26,7 +26,7 @@ public class UserService {
     }
 
     /**
-     * Поиск пользователя по email
+     * Поиск пользователя по username
      *
      * @param username
      * @return
@@ -45,16 +45,6 @@ public class UserService {
     }
 
     /**
-     * Получение конкретного юзера
-     *
-     * @return
-     */
-    public User getById(int id) {
-        return findById(id).orElseThrow();
-    }
-
-
-    /**
      * Регистрация пользователя
      *
      * @param userRegisterDTO
@@ -65,67 +55,13 @@ public class UserService {
 
 
     /**
-     * Добавление продукта в корзину
-     *
-     * @param film
-     */
-    public boolean addToCart(Film film) {
-        // Получаем авторизованного пользователя
-        var user = authService.getAuthUser().orElse(null);
-
-        // Если пользователь не авторизован, то ничего не делаем
-        if (user == null) {
-            return false;
-        }
-
-        // Добавляем товар в корзину
-        var films = user.getFilms();
-
-        // Если товар уже есть в корзине, то ничего не делаем
-        if (films.contains(film)) {
-            return false;
-        }
-
-        // Добавляем товар в корзину
-        films.add(film);
-
-        // Сохраняем пользователя
-        save(user);
-        return true;
-    }
-
-    /**
-     * Удаление продукта из корзины
-     *
-     * @param film
-     * @return
-     */
-    public boolean removeFromCart(Film film) {
-        // Получаем авторизованного пользователя
-        var user = authService.getAuthUser().orElse(null);
-
-        // Если пользователь не авторизован, то ничего не делаем
-        if (user == null) {
-            return false;
-        }
-
-        // Удаляем товар из корзины
-        var films = user.getFilms();
-        films.remove(film);
-
-        // Сохраняем пользователя
-        save(user);
-        return true;
-    }
-
-    /**
      * Добавление товара в корзину по id товара
      *
      * @param filmId
      * @return
      */
-    public boolean addToCartByProductId(int filmId) {
-        // Получаем авторизованного пользователя
+    public boolean addToFavouriteById(int filmId) {
+        //Получаем авторизованного пользователя
         var user = authService.getAuthUser().orElse(null);
 
         // Если пользователь не авторизован, то ничего не делаем
@@ -133,38 +69,43 @@ public class UserService {
             return false;
         }
 
-        // Получаем товар по id
+        // Добавляем фильм в избранное
         var film = filmService.findById(filmId).orElse(null);
-
-        // Получаем список товаров в корзине
+        // Получаем список фильмов пользователя
         var films = user.getFilms();
+        System.out.println(films);
 
-        // Если товар уже есть в корзине, то ничего не делаем
+        // Если фильм уже есть в избранном, то ничего не делаем
         if (films.contains(film)) {
             return false;
         }
-
-        // Добавляем товар в корзину
+        //Добавляем фильм в избранное
         films.add(film);
-
-        // Сохраняем пользователя
+        //Сохраняем пользователя
         save(user);
         return true;
     }
 
-    /**
-     * Удаление товара из корзины по id товара
-     *
-     * @param filmId
-     * @return
-     */
-    public boolean removeFromCartByProductId(int filmId) {
-        var product = filmService.findById(filmId).orElse(null);
 
-        if (product == null) {
+    public boolean deleteFromFavouriteById(int id) {
+        var film = filmService.findById(id).orElse(null);
+
+        if (film == null) {
             return false;
         } else {
-            return removeFromCart(product);
+            return removeFromFavourite(film);
         }
     }
+
+    private boolean removeFromFavourite(Film film) {
+        var user = authService.getAuthUser().orElse(null);
+        if (user == null) {
+            return false;
+        }
+        var films = user.getFilms();
+        films.remove(film);
+        save(user);
+        return true;
+    }
 }
+

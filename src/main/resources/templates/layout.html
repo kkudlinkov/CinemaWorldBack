@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#!">CinemaWorld</a>
+        <a class="navbar-brand" th:href="@{/}">CinemaWorld</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
@@ -36,14 +36,14 @@
                 </li>
             </ul>
             <form class="d-flex m-0">
-                <a th:if="${isAuth}" th:href="@{/favourites}" class="btn btn-outline-dark me-2" type="submit">
+                <a th:if="${userInfo.isAuth}" th:href="@{/user/profile}" class="btn btn-outline-dark me-2" type="submit">
                     <i class="bi-heart-fill me-1"></i>
                     Избранное
                     <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                 </a>
-                <a th:if="${isAuth}" th:href="@{/profile}" class="btn btn-outline-dark me-2">Профиль</a>
-                <a th:if="${!isAuth}" href="/auth/login" class="btn btn-outline-dark me-2" type="submit">Войти</a>
-                <a th:if="${!isAuth}" href="/auth/register" class="btn btn-outline-dark me-2"
+                <a th:if="${userInfo.isAuth}" th:href="@{/user/profile}" class="btn btn-outline-dark me-2">Профиль</a>
+                <a th:if="${!userInfo.isAuth}" href="/auth/login" class="btn btn-outline-dark me-2" type="submit">Войти</a>
+                <a th:if="${!userInfo.isAuth}" href="/auth/register" class="btn btn-outline-dark me-2"
                    type="submit">Регистрация</a>
 
             </form>

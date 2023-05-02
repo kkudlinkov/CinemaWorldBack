@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -46,11 +47,24 @@ public class Film {
     @Column(name = "image")
     private String image;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_films",
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<User> users = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Film film = (Film) o;
+        return id == film.id && Objects.equals(name, film.name) && Objects.equals(description, film.description) && Objects.equals(actor, film.actor) && Objects.equals(image, film.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, actor, image);
+    }
 }

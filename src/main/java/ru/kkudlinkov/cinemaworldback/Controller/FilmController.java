@@ -10,8 +10,8 @@ import ru.kkudlinkov.cinemaworldback.Service.AuthService;
 import ru.kkudlinkov.cinemaworldback.Service.FilmService;
 
 @Controller
-@RequestMapping("/films")
 @AllArgsConstructor
+@RequestMapping("/films")
 public class FilmController {
     private final FilmService filmService;
     private final AuthService authService;
@@ -25,12 +25,8 @@ public class FilmController {
             @PathVariable("id") int id,
             Model model
     ) {
-
-        // Провряем, авторизован ли пользователь добавляя переменную isAuth
-        model.addAttribute("isAuth", authService.getAuthUser().isPresent());
-
-        // Если пользователь авторизован, то добавляем его в модель
-        authService.getAuthUser().ifPresent(user -> model.addAttribute("user", user));
+        // Провряем, авторизован ли пользователь добавляя переменную
+        model.addAttribute("userInfo", authService.getUserInfo());
 
         // Проверка на существование продукта
         var film = filmService.getById(id);
