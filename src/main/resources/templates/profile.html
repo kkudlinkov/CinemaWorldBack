@@ -15,33 +15,70 @@
 </head>
 <body>
 <section layout:fragment="content">
+
+    <div class="py-5" style="background-image: url('https://www.incimages.com/uploaded_files/image/1920x1080/getty_470325068_387119.jpg'); height: 50%; background-position: center">
+        <div class="container my-5 d-flex justify-content-center align-items-center h-100">
+            <img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg"
+                 alt="...">
+            <div class="px-5" style="width: 30%">
+                <div>
+                    <h1 class="text-white fs-4 fw-bolder">Имя</h1>
+                    <p class="text-white fs-5 border-bottom border-light" th:text="${userInfo.user.getUsername()}"></p>
+                </div>
+                <div>
+                    <h1 class="text-white fs-4 fw-bolder">Статус</h1>
+                    <p class="text-white fs-5 border-bottom border-light" th:text="${userInfo.user.getRole()}"></p>
+                </div>
+<!--                <h1 class="text-white fs-4 fw-bolder">Информация</h1>-->
+<!--                <p class="text-white fs-5  border-bottom border-light">Landing Page Template</p>-->
+
+            </div>
+        </div>
+    </div>
+
+    <div class="py-5">
+        <div class="container my-5">
+            <div class="row w-100">
+                <div class="">
+                    <h2>Информация о себе:</h2>
+                    <p class="lead">A single, lightweight helper class allows you to add engaging, full width background
+                        images to sections of your page.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--    Избранное-->
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-3 row-cols-md-4 row-cols-xl-5 justify-content-center">
+    <div class="container my-5">
+        <h1 class="fs-2 fw-light">Избранное:</h1>
+        <div class="row gx-4 gx-lg-2 row-cols-3 row-cols-md-4 row-cols-xl-5">
             <div class="col mb-5" th:each="film: ${favourite}">
-                <div class="card h-100">
+                <div class="card" style="height: 450px; width: 200px">
                     <!-- Film image-->
-                    <img class="card-img-top;" style="height: 300px; object-fit: fill;" th:src="${film.getImage()}"
+                    <img class="card-img-top text-center" style=" object-fit: fill; height: 65%"
+                         th:src="${film.getImage()}"
                          alt="..."/>
                     <!-- Film details-->
                     <div class="card-body">
                         <div class="text-center">
                             <!-- Film name-->
-                            <h5 class="fw-bolder" th:text="${film.getName()}"></h5>
+                            <h5 class="fw-bolder fs-4" th:text="${film.getName()}"></h5>
                             <!-- Film actor-->
-                            <h5 class="fw-bolder" th:text="${film.getActor()}"></h5>
+                            <h5 class="fw-bolder fs-5" th:text="${film.getActor()}"></h5>
                         </div>
                     </div>
                     <!-- Film actions-->
                     <div class="card-footer pt-0 border-top-0 bg-transparent">
-                        <div class="d-flex">
-                            <a class="btn btn-outline-dark flex-grow-1 me-2"
+                        <div class="d-flex text-center w-100">
+                            <a class="btn btn-outline-dark flex-fill me-1"
                                th:href="@{/films/{id}(id=${film.getId()})}">Перейти</a>
-                            <form class="flex-grow-1 m-0 me-2"
+
+                            <form class="m-0"
                                   th:action="@{/user/delete-from-favourite/{id}(id=${film.getId()})}"
                                   th:method="post">
                                 <button class="btn btn-outline-dark" type="submit">Удалить</button>
                             </form>
+
                         </div>
                     </div>
                 </div>
