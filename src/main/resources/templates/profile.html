@@ -18,7 +18,7 @@
 
     <div class="py-5" style="background-image: url('https://www.incimages.com/uploaded_files/image/1920x1080/getty_470325068_387119.jpg'); height: 50%; background-position: center">
         <div class="container my-5 d-flex justify-content-center align-items-center h-100">
-            <img class="img-fluid rounded-circle mb-4" style="height: 150px;" th:src="${userInfo.user.getImage()}" alt="...">
+            <img class="img-fluid rounded-circle mb-4" style="height: 150px; width: 150px;" th:src="${userInfo.user.getImage()}" alt="...">
             <div class="px-5" style="width: 30%">
                 <div>
                     <h1 class="text-white fs-4 fw-bolder">Имя</h1>
@@ -53,11 +53,11 @@
     <!--    Избранное-->
     <div class="container my-5">
         <h1 class="fs-2 fw-light">Избранное:</h1>
-        <div class="row gx-4 gx-lg-2 row-cols-3 row-cols-md-4 row-cols-xl-5">
+        <div class="row gx-4 gx-lg-2 row-cols-3 row-cols-md-4 row-cols-xl-4">
             <div class="col mb-5" th:each="film: ${favourite}">
-                <div class="card" style="height: 450px; width: 200px">
+                <div class="card h-100">
                     <!-- Film image-->
-                    <img class="card-img-top text-center" style=" object-fit: fill; height: 65%"
+                    <img class="card-img-top text-center" style="height: 100%; width: auto; object-fit: fill;"
                          th:src="${film.getImage()}"
                          alt="..."/>
                     <!-- Film details-->

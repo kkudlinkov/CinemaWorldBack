@@ -17,9 +17,9 @@
 <section layout:fragment="content">
 
     <section class="bg-dark py-5"
-             style="background-image: url('https://images.hdqwalls.com/download/john-wick-saving-his-dog-2d-1920x1080.jpg'); background-size: cover; height: 500px">
+             style="background-image: url('https://images.hdqwalls.com/download/john-wick-saving-his-dog-2d-1920x1080.jpg'); background-size: cover; height: 700px">
         <div class="container px-4 px-lg-5 my-5" style="height: 100%; position: relative">
-            <div class="text-white" style="position: absolute; bottom: 0; right: 0">
+            <div class="text-white py-5" style="position: absolute; bottom: 0; right: 0">
                 <h1 class="display-4 fw-bolder">Джон Уик 4</h1>
                 <p class="fw-normal text-white mb-0">Неубиваемый киллер Джон Уик, ставший мишенью для смертоносного
                     Правления Кланов,<br> получает шанс навсегда избавиться от преследователей и отвоевать себе свободу.
@@ -35,14 +35,14 @@
                 <div class="col mb-5" th:each="film: ${films}">
                     <div class="card h-100">
                         <!-- Film image-->
-                        <img class="card-img-top;" style="height: 400px;" th:src="${film.getImage()}" alt="..."/>
+                        <img class="card-img-top;" style="height:100%; width: auto; object-fit: fill" th:src="${film.getImage()}" alt="..."/>
                         <!-- Film details-->
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Film name-->
                                 <h5 class="fw-bolder" th:text="${film.getName()}"></h5>
                                 <!-- Film actor-->
-                                <h5 class="fw-bolder" th:text="${film.getActor()}"></h5>
+                                <h5 class="fw-normal" th:text="${film.getActor()}"></h5>
                             </div>
                         </div>
                         <!-- Film actions-->
