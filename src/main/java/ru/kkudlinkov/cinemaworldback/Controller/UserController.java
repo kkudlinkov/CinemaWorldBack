@@ -1,9 +1,12 @@
 package ru.kkudlinkov.cinemaworldback.Controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import ru.kkudlinkov.cinemaworldback.Domain.dto.UserEditDTO;
 import ru.kkudlinkov.cinemaworldback.Service.AuthService;
 import ru.kkudlinkov.cinemaworldback.Service.FilmService;
 import ru.kkudlinkov.cinemaworldback.Service.UserService;
@@ -53,5 +56,46 @@ public class UserController {
         model.addAttribute("userInfo", authService.getUserInfo());
         userService.deleteFromFavouriteById(id);
         return "redirect:/user/profile";
+    }
+
+    /*
+     * Редактирование профиля
+     */
+    @GetMapping("/edit")
+    public String edit(
+            @ModelAttribute("userDTO") UserEditDTO userEditDTO,
+            Model model
+    ) {
+
+        // Добавляем информацию о пользователе в модель
+        model.addAttribute("userInfo", authService.getUserInfo());
+
+        userEditDTO = userService.getUserEditDTO();
+        model.addAttribute("userDTO", userEditDTO);
+
+        return "editprofile";
+    }
+
+    /**
+     * Изменение данных пользователя
+     *
+     * @return
+     */
+    @PostMapping("/edit")
+    public String editPost(
+            @Valid @ModelAttribute("userDTO") UserEditDTO userEditDTO,
+            BindingResult result,
+            Model model
+    ) {
+        model.addAttribute("userInfo", authService.getUserInfo());
+
+        if (result.hasErrors()) {
+            return "edit-profile";
+        }
+
+        if (userService.update(userEditDTO)) {
+            return "redirect:/user/profile";
+        }
+        return "edit-profile";
     }
 }

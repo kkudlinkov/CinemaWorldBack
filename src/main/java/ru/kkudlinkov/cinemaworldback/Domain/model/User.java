@@ -25,14 +25,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    /**
+     * Имя пользователя
+     */
     @Column(name = "username")
     private String username;
+
+    /**
+     * Email пользователя
+     */
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
 
     @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "role", nullable = false)
     private String role;
+
+    @Column(name = "image", nullable = false)
+    private String image;
 
     /**
      * Избранное пользователя
@@ -44,4 +56,17 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "film_id")
     )
     private Set<Film> films = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(role, user.role) && Objects.equals(image, user.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, email, password, role, image);
+    }
 }

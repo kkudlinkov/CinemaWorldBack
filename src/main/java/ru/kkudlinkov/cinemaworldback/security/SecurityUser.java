@@ -34,6 +34,12 @@ public class SecurityUser implements UserDetails {
         return user.getUsername();
     }
 
+    /**
+     * Получение email пользователя
+     *
+     * @return
+     */
+
 
     @Override
     public boolean isAccountNonExpired() {
@@ -59,6 +65,12 @@ public class SecurityUser implements UserDetails {
         return user;
     }
 
+
+    /**
+     * Обновление пользователя
+     *
+     * @param user
+     */
     public void updateUser(User user) {
         this.user = user;
     }

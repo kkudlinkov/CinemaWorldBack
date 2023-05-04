@@ -17,19 +17,22 @@
         </createTable>
     </changeSet>
 
-    <!--TODO: поменять автора-->
     <changeSet author="author" id="create_table_users">
         <createTable tableName="users">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="film_id"/>
             </column>
             <column name="username" type="varchar(255)"/>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
             <column name="password" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="role" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="image" type="varchar(255)"/>
         </createTable>
     </changeSet>
 

@@ -19,6 +19,10 @@ public class UserRegisterDTO {
     @NotEmpty(message = "Поле имя не может быть пустым")
     private String username;
 
+    @NotEmpty(message = "Поле email не может быть пустым")
+    @Email(message = "Некорректный email")
+    private String email;
+
     @NotEmpty(message = "Поле пароль не может быть пустым")
     private String password;
 }

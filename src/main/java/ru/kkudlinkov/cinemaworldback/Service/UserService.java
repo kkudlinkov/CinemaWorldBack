@@ -3,6 +3,7 @@ package ru.kkudlinkov.cinemaworldback.Service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.kkudlinkov.cinemaworldback.Domain.dto.UserEditDTO;
 import ru.kkudlinkov.cinemaworldback.Domain.dto.UserRegisterDTO;
 import ru.kkudlinkov.cinemaworldback.Domain.model.Film;
 import ru.kkudlinkov.cinemaworldback.Domain.model.User;
@@ -36,6 +37,16 @@ public class UserService {
     }
 
     /**
+     * Поиск пользователя по email
+     *
+     * @param email
+     * @return
+     */
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    /**
      * Получение конкретного юзера
      *
      * @return
@@ -53,9 +64,8 @@ public class UserService {
         save(userMapper.registerDTOToUser(userRegisterDTO));
     }
 
-
     /**
-     * Добавление товара в корзину по id товара
+     * Добавление товара в избранное по id фильма
      *
      * @param filmId
      * @return
@@ -106,6 +116,43 @@ public class UserService {
         films.remove(film);
         save(user);
         return true;
+    }
+
+    /**
+     * Обновление данных пользователя
+     */
+
+    public void update(User user, UserEditDTO userEditDTO) {
+        user.setUsername(userEditDTO.getUsername());
+        user.setImage(userEditDTO.getImage());
+        save(user);
+    }
+
+    public boolean update(UserEditDTO userEditDTO) {
+        // Получаем авторизованного пользователя
+        var user = authService.getAuthUser().orElse(null);
+
+        // Если пользователь не авторизован, то ничего не делаем
+        if (user == null) {
+            return false;
+        }
+        // Проверяем, что username не занят другим пользователем
+        var userWithSameUsername = findByUserName(userEditDTO.getUsername()).orElse(null);
+        if (userWithSameUsername != null && !userWithSameUsername.equals(user)) {
+            return false;
+        }
+
+        // Обновляем данные пользователя
+        update(user, userEditDTO);
+        return true;
+    }
+
+    public UserEditDTO getUserEditDTO() {
+        var user = authService.getAuthUser().orElse(null);
+        if (user == null) {
+            return null;
+        }
+        return userMapper.userToUserEditDTO(user);
     }
 }
 

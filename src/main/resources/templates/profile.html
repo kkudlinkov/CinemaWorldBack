@@ -18,20 +18,22 @@
 
     <div class="py-5" style="background-image: url('https://www.incimages.com/uploaded_files/image/1920x1080/getty_470325068_387119.jpg'); height: 50%; background-position: center">
         <div class="container my-5 d-flex justify-content-center align-items-center h-100">
-            <img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg"
-                 alt="...">
+            <img class="img-fluid rounded-circle mb-4" style="height: 150px;" th:src="${userInfo.user.getImage()}" alt="...">
             <div class="px-5" style="width: 30%">
                 <div>
                     <h1 class="text-white fs-4 fw-bolder">Имя</h1>
                     <p class="text-white fs-5 border-bottom border-light" th:text="${userInfo.user.getUsername()}"></p>
                 </div>
                 <div>
-                    <h1 class="text-white fs-4 fw-bolder">Статус</h1>
-                    <p class="text-white fs-5 border-bottom border-light" th:text="${userInfo.user.getRole()}"></p>
+                    <h1 class="text-white fs-4 fw-bolder">Почта</h1>
+                    <p class="text-white fs-5 border-bottom border-light" th:text="${userInfo.user.getEmail()}"></p>
                 </div>
-<!--                <h1 class="text-white fs-4 fw-bolder">Информация</h1>-->
-<!--                <p class="text-white fs-5  border-bottom border-light">Landing Page Template</p>-->
-
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a class="btn btn-dark btn-block"
+                           th:href="@{/user/edit}">Изменить данные</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
