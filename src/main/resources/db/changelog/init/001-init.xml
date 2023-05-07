@@ -36,6 +36,7 @@
         </createTable>
     </changeSet>
 
+
     <changeSet id="create_users_films" author="admin">
         <createTable tableName="users_films">
             <column name="user_id" type="BIGINT">

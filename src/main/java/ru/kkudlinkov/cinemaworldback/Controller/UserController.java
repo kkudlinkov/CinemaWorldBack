@@ -45,7 +45,6 @@ public class UserController {
         model.addAttribute("userInfo", authService.getUserInfo());
         userService.addToFavouriteById(id);
         return "redirect:/";
-
     }
 
     /*

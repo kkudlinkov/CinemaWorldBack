@@ -83,7 +83,6 @@ public class UserService {
         var film = filmService.findById(filmId).orElse(null);
         // Получаем список фильмов пользователя
         var films = user.getFilms();
-        System.out.println(films);
 
         // Если фильм уже есть в избранном, то ничего не делаем
         if (films.contains(film)) {
