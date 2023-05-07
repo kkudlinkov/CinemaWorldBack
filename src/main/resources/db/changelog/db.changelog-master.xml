@@ -10,5 +10,4 @@
     <include file="data/film/load_film_data.xml" relativeToChangelogFile="true"/>
     <include file="data/user/load_user_data.xml" relativeToChangelogFile="true"/>
 
-
 </databaseChangeLog>

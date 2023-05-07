@@ -23,7 +23,7 @@ public abstract class UserMapper {
     @Mapping(target = "role", constant = "ROLE_USER")
     @Mapping(target = "films", ignore = true)
     @Mapping(target = "image", constant = "https://www.pinclipart.com/picdir/big/165-1653686_female-user-icon-png-download-user-colorful-icon.png")
-//    TODO:Добавить описание человека
+
     public abstract User registerDTOToUser(UserRegisterDTO userRegisterDTO);
 
     public abstract UserEditDTO userToUserEditDTO(User user);

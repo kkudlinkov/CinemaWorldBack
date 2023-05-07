@@ -1,9 +1,13 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/cinema_back
     username: postgres
     password: root
     driverClassName: org.postgresql.Driver
+#      url: jdbc:h2:mem:test_db
+#      driverClassName: org.h2.Driver
+#      username: admin
+#      password: 1
   jpa:
     hibernate:
       ddl-auto: none
