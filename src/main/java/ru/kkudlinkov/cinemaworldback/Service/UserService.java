@@ -124,6 +124,7 @@ public class UserService {
     public void update(User user, UserEditDTO userEditDTO) {
         user.setUsername(userEditDTO.getUsername());
         user.setImage(userEditDTO.getImage());
+        user.setDescription(userEditDTO.getDescription());
         save(user);
     }
 
@@ -151,7 +152,8 @@ public class UserService {
         if (user == null) {
             return null;
         }
-        return userMapper.userToUserEditDTO(user);
+        var user1 = findByUserName(user.getUsername()).orElse(null);
+        return userMapper.userToUserEditDTO(user1);
     }
 }
 

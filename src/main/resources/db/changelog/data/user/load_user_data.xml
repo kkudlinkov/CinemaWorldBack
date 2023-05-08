@@ -16,8 +16,9 @@
                 tableName="users"
                 usePreparedStatements="true">
             <column name="username" type="string"/>
-            <column name="email" type="string"/>
             <column name="password" type="string"/>
+            <column name="email" type="string"/>
+            <column name="description" type="string"/>
             <column name="role" type="string"/>
             <column name="image" type="string"/>
 

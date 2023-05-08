@@ -19,7 +19,6 @@
                 <a th:if="${userInfo.isAuth}" th:href="@{/user/profile}" class="btn btn-outline-dark me-2" type="submit">
                     <i class="bi-heart-fill me-1"></i>
                     Избранное
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                 </a>
                 <a th:if="${userInfo.isAuth}" th:href="@{/user/profile}" class="btn btn-outline-dark me-2">Профиль</a>
                 <a th:if="${!userInfo.isAuth}" href="/auth/login" class="btn btn-outline-dark me-2" type="submit">Войти</a>

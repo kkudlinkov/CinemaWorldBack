@@ -89,12 +89,12 @@ public class UserController {
         model.addAttribute("userInfo", authService.getUserInfo());
 
         if (result.hasErrors()) {
-            return "edit-profile";
+            return "editprofile";
         }
 
         if (userService.update(userEditDTO)) {
             return "redirect:/user/profile";
         }
-        return "edit-profile";
+        return "editprofile";
     }
 }

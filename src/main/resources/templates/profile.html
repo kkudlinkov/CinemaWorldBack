@@ -43,8 +43,7 @@
             <div class="row w-100">
                 <div class="">
                     <h2>Информация о себе:</h2>
-                    <p class="lead">A single, lightweight helper class allows you to add engaging, full width background
-                        images to sections of your page.</p>
+                    <p th:text="${userInfo.user.getDescription()}" class="lead"></p>
                 </div>
             </div>
         </div>

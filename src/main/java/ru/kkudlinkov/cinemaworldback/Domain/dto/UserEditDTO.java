@@ -16,4 +16,7 @@ public class UserEditDTO {
     @NotEmpty(message = "Поле image не может быть пустым")
     private String image;
 
+    @NotEmpty(message = "Поле описание не может быть пустым")
+    private String description;
+
 }

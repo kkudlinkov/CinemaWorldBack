@@ -46,6 +46,9 @@ public class User {
     @Column(name = "image", nullable = false)
     private String image;
 
+    @Column(name = "description", nullable = false)
+    private String description;
+
     /**
      * Избранное пользователя
       */
@@ -62,11 +65,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(role, user.role) && Objects.equals(image, user.image);
+        return id == user.id && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(role, user.role) && Objects.equals(image, user.image) && Objects.equals(description, user.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, email, password, role, image);
+        return Objects.hash(id, username, email, password, role, image, description);
     }
 }
