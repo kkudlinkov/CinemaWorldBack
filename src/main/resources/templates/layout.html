@@ -17,7 +17,7 @@
         <a class="navbar-brand" th:href="@{/}">CinemaWorld</a>
         <div class="d-flex">
             <form class="d-flex m-0">
-                <a th:if="${userInfo.isAuth}" th:href="@{/user/profile}" class="btn btn-primary me-2">Профиль</a>
+                <a th:if="${userInfo.isAuth}" th:href="@{/user/profile}" th:text="${userInfo.user.getUsername()}" class="btn btn-primary me-2"></a>
                 <a th:if="${!userInfo.isAuth}" href="/auth/login" class="btn btn-primary me-2" type="submit">Войти</a>
                 <a th:if="${!userInfo.isAuth}" href="/auth/register" class="btn btn-success me-2"
                    type="submit">Регистрация</a>
