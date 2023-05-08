@@ -170,5 +170,4 @@ public class UserServiceTest {
 
         assertNull(result);
     }
-
 }
