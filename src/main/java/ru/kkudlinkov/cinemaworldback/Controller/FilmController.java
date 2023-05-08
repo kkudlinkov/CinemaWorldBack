@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kkudlinkov.cinemaworldback.Service.AuthService;
 import ru.kkudlinkov.cinemaworldback.Service.FilmService;
+import ru.kkudlinkov.cinemaworldback.Service.UserService;
 
 @Controller
 @AllArgsConstructor
 @RequestMapping("/films")
 public class FilmController {
+
     private final FilmService filmService;
     private final AuthService authService;
 

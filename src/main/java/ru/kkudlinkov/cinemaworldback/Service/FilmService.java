@@ -56,4 +56,12 @@ public class FilmService {
         return total;
     }
 
+    public Film save(Film film) {
+        return filmRepository.save(film);
+    }
+
+    public void delete(int filmId) {
+        filmRepository.deleteById(filmId);
+    }
+
 }
