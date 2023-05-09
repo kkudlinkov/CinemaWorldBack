@@ -25,7 +25,8 @@
             <hr class="hr-xs">
 
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Your password" id="password" name="password" required>
+                <input type="password" class="form-control" placeholder="Your password" id="password" name="password"
+                       required>
             </div>
             <!-- Обработкта ошибки -->
             <div class="alert alert-danger"
@@ -33,13 +34,16 @@
                  th:if="${param.error}">
                 Неверное имя пользователя или пароль
             </div>
-            <input type="submit" class="btn btn-success btn-block" value="Войти">
+            <div class="w-100" style="text-align: left">
+                <input type="submit" class="btn btn-success btn-block" value="Войти">
+            </div>
 
         </form>
-        <hr class="mb-4">
-        <p class="mb-3">Еще не зарегистрированы?</p>
-        <a href="/auth/register" class="btn btn-primary mb-3 mr-3">Зарегистрироваться</a>
-        <a href="/" class="btn btn-secondary mb-3">Вернуться на сайт</a>
+        <div class="w-100" style="text-align: left">
+            <p class="mb-3">Еще не зарегистрированы?</p>
+            <a href="/auth/register" class="btn btn-primary mb-3 mr-3">Зарегистрироваться</a>
+            <a href="/" class="btn btn-secondary mb-3">Вернуться на сайт</a>
+        </div>
     </div>
 </section>
 </body>

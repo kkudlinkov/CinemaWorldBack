@@ -36,12 +36,15 @@
                 <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                      class="alert alert-danger mt-1"></div>
             </div>
-            <button class="btn btn-success btn-block" type="submit">Зарегистрироваться</button>
+            <div class="w-100" style="text-align: left">
+                <button class="btn btn-success btn-block" type="submit">Зарегистрироваться</button>
+            </div>
         </form>
-        <hr class="mb-4">
-        <p class="mb-3">Уже зарегистрированы?</p>
-        <a href="/auth/login" class="btn btn-primary mb-3 mr-3">Войти</a>
-        <a href="/" class="btn btn-secondary mb-3">Вернуться на сайт</a>
+        <div class="w-100" style="text-align: left">
+            <p class="mb-3">Уже зарегистрированы?</p>
+            <a href="/auth/login" class="btn btn-primary mb-3 mr-3">Войти</a>
+            <a href="/" class="btn btn-secondary mb-3">Вернуться на сайт</a>
+        </div>
     </div>
 </section>
 </body>

@@ -2,6 +2,7 @@ package ru.kkudlinkov.cinemaworldback.Service;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.kkudlinkov.cinemaworldback.Domain.model.Film;
 import ru.kkudlinkov.cinemaworldback.Repository.FilmRepository;
@@ -21,7 +22,7 @@ public class FilmService {
      * @return
      */
     public List<Film> getAllFilms() {
-        return filmRepository.findAll();
+        return filmRepository.findAll(Sort.by(Sort.Direction.ASC, "id")); // Сортировка по ID
     }
 
     /**
@@ -41,6 +42,7 @@ public class FilmService {
     public Film getById(int id) {
         return findById(id).orElseThrow();
     }
+
 
     /**
      * Получение списка избранных фильмов
@@ -63,5 +65,4 @@ public class FilmService {
     public void delete(int filmId) {
         filmRepository.deleteById(filmId);
     }
-
 }
