@@ -42,7 +42,7 @@ public class AdminController {
     public String products(
             Model model
     ) {
-        model.addAttribute("films", adminService.getAllProducts());
+        model.addAttribute("films", adminService.getAllFilms());
         return "admin/films";
     }
 

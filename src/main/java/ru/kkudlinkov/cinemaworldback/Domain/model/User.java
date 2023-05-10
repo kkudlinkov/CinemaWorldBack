@@ -37,15 +37,27 @@ public class User {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    /**
+     * Пароль пользователя
+     */
     @Column(name = "password", nullable = false)
     private String password;
 
+    /**
+     * Роль пользователя
+     */
     @Column(name = "role", nullable = false)
     private String role;
 
+    /**
+     * Изображение пользователя
+     */
     @Column(name = "image", nullable = false)
     private String image;
 
+    /**
+     * Описание пользователя
+     */
     @Column(name = "description", nullable = false)
     private String description;
 
@@ -60,12 +72,15 @@ public class User {
     )
     private Set<Film> films = new HashSet<>();
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(role, user.role) && Objects.equals(image, user.image) && Objects.equals(description, user.description);
+        return id == user.id && Objects.equals(username, user.username) && Objects.equals(email, user.email)
+                && Objects.equals(password, user.password) && Objects.equals(role, user.role)
+                && Objects.equals(image, user.image) && Objects.equals(description, user.description);
     }
 
     @Override

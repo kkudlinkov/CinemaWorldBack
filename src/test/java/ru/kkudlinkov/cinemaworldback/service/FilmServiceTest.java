@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 import ru.kkudlinkov.cinemaworldback.Domain.model.Film;
 import ru.kkudlinkov.cinemaworldback.Repository.FilmRepository;
 import ru.kkudlinkov.cinemaworldback.Service.FilmService;
@@ -51,7 +52,7 @@ public class FilmServiceTest {
         List<Film> actualProducts = filmService.getAllFilms();
 
         // Assert
-        verify(filmRepository, times(1)).findAll();
+        verify(filmRepository, times(1)).findAll(Sort.by(Sort.Direction.ASC, "id"));
         Assertions.assertEquals(expectedFilms, actualProducts);
     }
 
@@ -101,11 +102,11 @@ public class FilmServiceTest {
         expectedFilms.add(film1);
         expectedFilms.add(film2);
 
-        when(filmRepository.findAll()).thenReturn(expectedFilms);
+        when(filmRepository.findAll(Sort.by(Sort.Direction.ASC, "id"))).thenReturn(expectedFilms);
 
         List<Film> actualFilms = filmService.getAllFilms();
 
-        verify(filmRepository, times(1)).findAll();
+        verify(filmRepository, times(1)).findAll(Sort.by(Sort.Direction.ASC, "id"));
         Assertions.assertEquals(expectedFilms, actualFilms);
     }
 

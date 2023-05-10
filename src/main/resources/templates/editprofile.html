@@ -5,47 +5,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Изменить данные профиля</title>
-    <link rel="stylesheet" href="/static/style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style/style.css">
 </head>
 <body>
 
 <section layout:fragment="content">
     <div class="login-block container">
-        <div class="card">
             <div class="card-header">
                 <h4 class="mb-0">
                     Редактирование профиля
                 </h4>
             </div>
             <form th:action="@{/user/edit}" th:object="${userDTO}" method="post" class="mx-5">
-                <div class="form-group mb-3">
+                <div class="form-group mb-3 w-100" style="text-align: left">
                     <label for="username">Новое имя</label>
                     <input type="text" class="form-control" id="username" th:field="*{username}" required>
                     <div th:if="${#fields.hasErrors('username')}" class="alert alert-danger mt-2"
                          th:errors="*{username}" role="alert">
                     </div>
+                    <hr class="hr-xs">
                 </div>
 
-                <div class="form-group mb-3 ">
+                <div class="form-group mb-3 w-100" style="text-align: left">
                     <label for="image">Новый аватар (URL:):</label>
                     <input type="text" class="form-control" id="image" th:field="*{image}" required>
                     <div th:if="${#fields.hasErrors('image')}" class="alert alert-danger mt-5" role="alert"
                          th:errors="*{image}">
                     </div>
+                    <hr class="hr-xs">
                 </div>
 
-                <div class="form-group mb-3 ">
+                <div class="form-group mb-3 w-100" style="text-align: left">
                     <label for="description">Описание профиля:</label>
                     <textarea class="form-control" id="description" th:field="*{description}" required></textarea>
                     <div th:if="${#fields.hasErrors('description')}" class="alert alert-danger mt-2" role="alert"
                          th:errors="*{description}">
                     </div>
+                    <hr class="hr-xs">
                 </div>
                 <button type="submit" class="btn btn-primary">Сохранить</button>
                 <a th:href="@{/user/profile}" class="btn btn-outline">Отмена</a>
             </form>
         </div>
-    </div>
 </section>
 </body>
 </html>

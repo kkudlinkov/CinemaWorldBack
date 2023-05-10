@@ -25,28 +25,33 @@ public class Film {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    /**
+     * Название фильма
+     */
     @Column(name = "name", nullable = false)
     private String name;
 
-    /*
+    /**
      * Описание фильма
      */
     @Column(name = "description")
     private String description;
 
-    /*
-     * Главный актер
+    /**
+     * Актер фильма
      */
-
     @Column(name = "actor")
     private String actor;
 
-    /*
-     * Картинка товара
+    /**
+     * Изображение фильма
      */
     @Column(name = "image")
     private String image;
 
+    /**
+     * Список пользователей, которые добавили фильм в избранное
+     */
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_films",
@@ -60,7 +65,8 @@ public class Film {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Film film = (Film) o;
-        return id == film.id && Objects.equals(name, film.name) && Objects.equals(description, film.description) && Objects.equals(actor, film.actor) && Objects.equals(image, film.image);
+        return id == film.id && Objects.equals(name, film.name) && Objects.equals(description, film.description)
+                && Objects.equals(actor, film.actor) && Objects.equals(image, film.image);
     }
 
     @Override

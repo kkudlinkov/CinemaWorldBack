@@ -59,7 +59,6 @@ public class UserService {
         return findById(id).orElse(null);
     }
 
-
     /**
      * Поиск пользователя по username
      *
@@ -69,7 +68,6 @@ public class UserService {
     public Optional<User> findByUserName(String username) {
         return userRepository.findByUsername(username);
     }
-
 
     /**
      * Поиск пользователя по email
@@ -81,7 +79,6 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-
     /**
      * Получение конкретного юзера
      *
@@ -91,7 +88,6 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-
     /**
      * Регистрация пользователя
      *
@@ -100,7 +96,6 @@ public class UserService {
     public void register(UserRegisterDTO userRegisterDTO) {
         save(userMapper.registerDTOToUser(userRegisterDTO));
     }
-
 
     /**
      * Добавление товара в избранное по id фильма
@@ -137,62 +132,45 @@ public class UserService {
     /**
      * Добавление фильма в избранное
      * @param film
-     * @return
      */
     public boolean addToFavourite(Film film) {
-        // Получаем авторизованного пользователя
         var user = authService.getAuthUser().orElse(null);
-
-        // Если пользователь не авторизован, то ничего не делаем
         if (user == null) {
             return false;
         }
 
-        // Добавляем товар в корзину
         var films = user.getFilms();
-
-        // Если товар уже есть в корзине, то ничего не делаем
         if (films.contains(film)) {
             return false;
         }
-
-        // Добавляем товар в корзину
         films.add(film);
 
-        // Сохраняем пользователя
         save(user);
         return true;
     }
-
     /**
      * Удаление фильма из избранного по id фильма
      * @param id
-     * @return
      */
     public boolean deleteFromFavouriteById(int id) {
         var film = filmService.findById(id).orElse(null);
-
         if (film == null) {
             return false;
         } else {
             return removeFromFavourite(film);
         }
     }
-
     /**
      * Удаление фильма из избранного
      * @param film
-     * @return
      */
     public boolean removeFromFavourite(Film film) {
         var user = authService.getAuthUser().orElse(null);
         if (user == null) {
             return false;
         }
-
         var films = user.getFilms();
         films.remove(film);
-
         save(user);
         return true;
     }

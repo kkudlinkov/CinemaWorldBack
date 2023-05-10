@@ -35,7 +35,8 @@ public class AuthController {
     ) {
         var existing = userService.findByUserName(userRegisterDTO.getUsername());
         if (existing.isPresent()) {
-            result.rejectValue("username", null, "Пользователь с таким username уже существует");
+            result.rejectValue("username", null,
+                    "Пользователь с таким username уже существует");
         }
 
         if (result.hasErrors()) {

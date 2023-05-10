@@ -41,7 +41,7 @@ public class AdminService {
      *
      * @return
      */
-    public List<Film> getAllProducts() {
+    public List<Film> getAllFilms() {
         return filmService.getAllFilms();
     }
 

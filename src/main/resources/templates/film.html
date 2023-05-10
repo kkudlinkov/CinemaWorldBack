@@ -26,9 +26,9 @@
                     <!--                    Название-->
                     <h1 class="display-5 fw-bolder" th:text="${film.getName()}"></h1>
                     <!--                    Актер-->
-                    <h2 class="display-5 fw-semibold" th:text="${film.getActor()}"></h2>
+                    <h2 class="display-5 fw-semibold" th:text="${'В главных ролях: ' + film.getActor()}"></h2>
                     <!--                    Описание-->
-                    <p class="lead" th:text="${film.getDescription()}"></p>
+                    <p class="lead" th:text="${'Описание: ' + film.getDescription()}"></p>
                     <div class="d-flex">
                         <a class="btn btn-outline-dark me-2 flex-grow-1"
                            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Смотреть</a>
